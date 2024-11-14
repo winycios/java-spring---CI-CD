@@ -16,4 +16,9 @@ public class CarroDTO {
     private Double valor;
     private MarcaDTO marca;
 
+    public CarroDTO(Long id, String modelo, Double valor) {
+        this.id = id;
+        this.modelo = modelo;
+        this.valor = valor;
+    }
 }
