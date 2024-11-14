@@ -1,0 +1,22 @@
+name: "CD Pipeline"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: "Pull Docker Image"
+        run: docker pull winycios/spring_ci_cd:latest
+
+      - name: "Stop Docker Container"
+        run: docker stop spring_ci_cd || true
+
+      - name: "Remove Docker Container"
+        run: docker rm spring_ci_cd || true
+
+      - name: "Run Docker Container"
+        run: docker run -d -p 8080:8080 --name spring_ci_cd winycios/spring_ci_cd:latest
